@@ -1,6 +1,7 @@
 local L = SubSpecGlobal.L
 
 local mainFrame = nil
+local buttonWidth = 80
 
 local eventFrame = CreateFrame("Frame", "SubSpec_EventFrame", UIParent)
 eventFrame:Show()
@@ -175,15 +176,15 @@ local function CreateNewProfileButton(parent, text, data)
 end
 
 local function UpdateScrollWidth()
-	mainFrame.profilesFrame:SetWidth(10 + mainFrame.visibleProfiles*145)
+	mainFrame.profilesFrame:SetWidth(10 + mainFrame.visibleProfiles*buttonWidth)
 end
 
 local function AddProfileButton(text, data)
 	if mainFrame.visibleProfiles == #mainFrame.profiles then
 		local newButtonFrame = CreateNewProfileButton(mainFrame.profilesFrame, text, data)
-		newButtonFrame:SetSize(145, mainFrame.profilesFrame:GetHeight())
+		newButtonFrame:SetSize(buttonWidth, mainFrame.profilesFrame:GetHeight())
 		newButtonFrame.index = #mainFrame.profiles + 1
-		newButtonFrame:SetPoint("TOPLEFT", #mainFrame.profiles*145, 0)
+		newButtonFrame:SetPoint("TOPLEFT", #mainFrame.profiles*buttonWidth, 0)
 		table.insert(mainFrame.profiles, newButtonFrame)
 		mainFrame.visibleProfiles = mainFrame.visibleProfiles + 1
 	else
